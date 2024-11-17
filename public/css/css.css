@@ -1,0 +1,390 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display: block;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* ******************************* */
+@font-face {
+	font-family: 'Cat Paw';
+	src: url('../fonts/CatPaw.woff2') format('woff2'),
+		url('../fonts/CatPaw.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Gamja Flower';
+	src: url('../fonts/GamjaFlower-Regular.woff2') format('woff2'),
+		url('../fonts/GamjaFlower-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+body {
+	font-size: 14px;
+}
+
+#background{
+	position: fixed;
+	top:0;
+	left:0;
+	bottom: 0;
+	right: 0;
+	background: url(../img/bg.png) no-repeat center center fixed;
+	transition: all 500ms;
+	opacity: 1;
+}
+#background.ingame{
+	opacity: 0.3;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+/* MENU */
+menu {
+	background: rgba(255, 255, 255, 0.8);
+	padding: 0.5em;
+	font-size: 2em;
+	border-radius: 0.35em;
+	border: 0.4em solid rgba(0, 0, 0, 0.56);
+	backdrop-filter: blur(4px);
+	font-family: 'Gamja Flower';
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0.35em 0.35em 1.07em 0.35em rgba(0, 0, 0, 0.27);
+	opacity: 1;
+	transition: all 500ms;
+}
+menu.hidden{
+	opacity: 0;
+}
+menu.closed{
+	display: none;
+}
+
+.play {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.btn {
+	margin-bottom: 0.25em;
+	font-size: 1.5em;
+	cursor: pointer;
+	transition: 200ms;
+}
+
+.btn:hover {
+	color: #ffd1cb;
+	text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.75);
+}
+
+.v_checkbox {
+	width: 0.75em;
+	height: 0.75em;
+	border: 0.12em solid #707070;
+	border-radius: 0.15em;
+	cursor: pointer;
+	position: relative;
+}
+
+.v_checkbox.checked::after {
+	content: 'x';
+	position: absolute;
+	top: -0.4em;
+	left: 0;
+	width: 1em;
+	height: 1em;
+	font-size: 1.25em;
+	color: #727272;
+}
+
+.pws_tip {
+	font-size: 0.6em;
+	width: 5em;
+	line-height: 0.8em;
+	text-align: center;
+}
+
+.s_seedbox {
+	display: flex;
+	align-items: center;
+	margin: 0.25em;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.ss_inp {
+	width: 100%;
+	margin: 1em 3em;
+	padding: 0.5em;
+	border: none;
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+	border-radius: 0.5em;
+	background: rgba(255, 255, 255, 0.5);
+	display: none;
+}
+
+.ss_inp.show {
+	display: block;
+}
+
+.pws_tip {
+	font-size: 0.8em;
+	width: 5em;
+	line-height: 0.8em;
+	text-align: center;
+	margin: 0 0.25em;
+}
+
+.record {
+	display: flex;
+	font-size: medium;
+}
+.record > div{
+	padding: 5px;
+}
+.records_list{
+	display: block;
+}
+.records_list.active{
+	display: block;
+}
+#clear {
+	text-align: center;
+	font-size: medium;
+}
+
+/* GAME */
+#game {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	justify-content: center;
+	opacity: 0;
+	transition: all 500ms;
+}
+#game.load {
+	display: flex;
+	opacity: 1;
+}
+#game.on {
+	display: flex;
+}
+
+.pattoun {
+	position: absolute;
+	transition: 200ms;
+}
+
+.pattoun>img {
+	height: 33vh;
+}
+
+.pattoun.top {
+	transform: rotate(180deg);
+	top: -35vh;
+}
+.pattoun.bottom {
+	bottom: -35vh;
+}
+
+#game.set .pattoun.top {
+	top: -3vh;
+}
+#game.set .pattoun.bottom {
+	bottom: -3vh;
+}
+.playername {
+	font-family: 'Gamja Flower';
+	color:#4f4f4f;
+	font-size: 3em;
+	position: absolute;
+	display: flex;
+	align-items: center;
+}
+.playername.opponent {
+	margin-left: 8em;
+	margin-top: 0.5em;
+}
+.playername.me {
+	bottom: 0.5em;
+	margin-right: 15em;
+}
+.playername .score {
+	font-size: 1.5em;
+	display: inline-block;
+	margin: 0 0.25em;
+}
+.moves {
+    position: absolute;
+    display: flex;
+    bottom: -3vh;
+    justify-content: center;
+	z-index: 1;
+}
+
+.move>img {
+	height: 15vh;
+	opacity: .8;
+	padding: 5px;
+	transition: 200ms;
+	transform: scale(1);
+	cursor: pointer;
+}
+.move:hover{
+	z-index: 2;
+}
+.move:hover>img {
+	opacity: 1;
+	transform: scale(1.2);
+}
+.move.paper {
+	transform: translateY(-20px);
+}
+.move.rock {
+	transform: rotate(-22deg) translateX(-8px);
+}
+.move.scissors {
+	transform: rotate(+21deg) translateX(-6px);
+}
+
+.endgame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: none;
+	opacity: 0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(0.5em);
+	transition: all 200ms;
+	z-index: 3;
+}
+.endgame.show {
+	display: flex;
+}
+.endgame.show.visible {
+	opacity: 1;
+}
+
+.gamestatus {
+	font-family: 'Cat Paw';
+	font-size: 8em;
+	color: #6C6C6C;
+}
+.endgame .button {
+	font-size: 3em;
+	font-family: 'Gamja Flower';
+	letter-spacing: -0.045em;
+	margin: 0.25em;
+	cursor: pointer;
+	transition: 200ms;
+}
+
+.endgame .button:hover {
+	color: #ffd1cb;
+	text-shadow: 0 0 0.05em rgba(0, 0, 0, 0.75);
+}
+
+.history_list {
+	font-family: 'Gamja Flower';
+	position: absolute;
+	left: 10px;
+	top: 0;
+	overflow: auto;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.history_elem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+}
+.history_elem .res {
+	width: 3.5em;
+	text-align: center;
+}
+.history_list .action img {
+	height:50px;
+}
+
+.credit {
+	font-family: 'Gamja Flower';
+	position: absolute;
+	font-size: small;
+	bottom: 5px;
+	left: 5px;
+}
