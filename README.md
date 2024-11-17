@@ -1,4 +1,4 @@
-# Shifumi
+# Shifumew
 
 Shifumi est un jeu de pierre-papier-ciseaux avec une interface utilisateur interactive et des effets sonores.
 
